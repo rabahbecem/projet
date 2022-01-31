@@ -1,0 +1,72 @@
+<div >
+    <div class="container" >
+     
+        <div class="row"  >
+          <h2 align="center">Ajouter un Employer</h2>
+            <div class="col-md-6">
+                <div class="card">
+                    <form  (ngSubmit)="Ajouter(myForm)" #myForm="ngForm" >
+                      
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">user Name</label>
+                            <input [(ngModel)]="employee.userName" type="text" class="form-control" id="userName" name="userName"  required #userName="ngModel" >
+                          </div>
+                          <div [hidden]="!userName.pristine" class="alert alert-danger">Name is required</div>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Email address</label>
+                          <input [(ngModel)]="employee.email" type="email" class="form-control" id="Email" name="email"  required #email="ngModel" >              
+                        </div>
+                        <div [hidden]="!email.pristine" class="alert alert-danger">Email is required</div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Password</label>
+                            <input [(ngModel)]="employee.password" type="password" class="form-control" id="Password" name="Password"  required #Password="ngModel" >
+                          </div>
+                          <div class="mb-3">
+                            <label for="customerID" class="form-label"> Deparement : </label>
+                              <select [(ngModel)]="employee.departement"  [ngModelOptions]="{standalone: true}" id="department" name="department"  required #department="ngModel">
+                                  <option *ngFor="let departement of departements" [ngValue]="departement">
+                                      {{departement.id_departement}} {{departement.nom_departement}}
+                                  </option>
+                              </select>
+                          </div>
+                          <div class="mb-3">
+                            <label for="customerID" class="form-label"> Role : </label>
+                              <select [(ngModel)]="employee.role"  [ngModelOptions]="{standalone: true}" id="role" name="role"  required #role="ngModel">
+                                  <option *ngFor="let role of roles" [ngValue]="role.role">
+                                      {{role.id_role}} {{role.role}}
+                                  </option>
+                              </select>
+                          </div>
+                        <button type="submit" class="btn btn-primary" [disabled]="!myForm.form.valid">Ajouter</button>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="card my-5">
+      <h2 align="center">Liste des employees</h2>
+        <div class="card-body">
+          <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Departement</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of employees">
+                <td>{{ employee.id_user }}</td>
+                <td>{{ employee.userName }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.role }}</td>
+                <td>{{ employee.departement.nom_departement }}</td>
+                <td> <button (click)="Supprimer(employee.id_user)" class="btn btn-danger">Supprimer</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>

@@ -1,0 +1,27 @@
+<div class="container" >
+     
+    <div class="row"  >
+      <h2 align="center">Login</h2>
+        <div class="col-md-6">
+            <div class="card">
+                <form  (ngSubmit)="Ajouter(myForm)" #myForm="ngForm" >
+                    <small class="text-danger">{{msg}}</small>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">user Name</label>
+                        <input [(ngModel)]="employee.userName" type="text" class="form-control" id="userName" name="userName"  required #userName="ngModel" >
+                      </div>
+                      <div [hidden]="!userName.pristine" class="alert alert-danger">Name is required</div>
+                    <div>
+                        <label for="exampleInputEmail1" class="form-label">Password</label>
+                        <input [(ngModel)]="employee.password" type="password" class="form-control" id="Password" name="Password"  required #Password="ngModel" >
+                      </div>
+                     
+                    
+                    <button type="submit" class="btn btn-primary" [disabled]="!myForm.form.valid">connexion</button>
+                  </form>
+                 <p> {{employee.role}}  {{employee.userName}} {{employee.password}}  {{employee.id_user}}</p>
+            </div>
+        </div>
+
+     </div>
+  </div>
